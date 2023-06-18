@@ -13,16 +13,51 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Login_in
+
+namespace YourNamespace
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public partial class LoginWindow : Window
     {
-        public MainWindow()
+        public LoginWindow()
         {
             InitializeComponent();
         }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            string email = txtEmail.Text;
+            string password = txtPassword.Password;
+
+            // Проверка адреса почты и пароля на соответствие требованиям
+            if (IsValidEmail(email) && IsValidPassword(password))
+            {
+                // Выполнение входа в систему
+                // В данном примере просто выводим сообщение об успешном входе
+                txtStatus.Text = "Login successful!";
+                txtStatus.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                // В случае неверных данных выводим сообщение об ошибке
+                txtStatus.Text = "Invalid email or password!";
+                txtStatus.Visibility = Visibility.Visible;
+            }
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            // Реализуйте свою логику проверки адреса почты
+            // Ниже приведен простой пример проверки на наличие символа @
+            return email.Contains("@");
+        }
+
+        private bool IsValidPassword(string password)
+        {
+            // Реализуйте свою логику проверки пароля
+            // Ниже приведен простой пример проверки на наличие минимальной длины пароля
+            return password.Length >= 6;
+        }
     }
 }
+
+
